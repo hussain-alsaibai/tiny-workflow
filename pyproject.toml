@@ -4,29 +4,31 @@ build-backend = "setuptools.backends._legacy:_Backend"
 
 [project]
 name = "tiny-workflow"
-version = "0.1.0"
+version = "0.3.0"
 description = "Async step orchestrator with DAG dependencies, retries, state persistence, and human approval gates. Zero dependencies."
 readme = "README.md"
 license = {text = "MIT"}
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
     {name = "hussain-alsaibai"},
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Framework :: AsyncIO",
+    "Typing :: Typed",
 ]
+keywords = ["ai", "agent", "workflow", "dag", "orchestrator", "agentic", "pipeline"]
 dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/hussain-alsaibai/tiny-workflow"
+Repository = "https://github.com/hussain-alsaibai/tiny-workflow"
 
 [tool.setuptools.packages.find]
 include = ["tiny_workflow*"]
