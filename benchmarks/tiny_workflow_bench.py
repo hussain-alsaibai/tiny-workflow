@@ -227,7 +227,7 @@ def print_result(label: str, result: dict):
 def main():
     print("\n🚀 tiny-workflow v0.3.0 benchmarks")
     print(f"  Python: {sys.version.split()[0]}")
-    print(f"  asyncio: {asyncio.__version__}")
+    print(f"  asyncio: {sys.version.split()[0]}")
 
     # Benchmark 1a: sync execution
     print("\n⏳ Running sync benchmark (50 steps, 5 levels × 10 parallel)...")
