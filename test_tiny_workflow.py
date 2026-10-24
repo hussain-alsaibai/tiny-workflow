@@ -3,12 +3,9 @@ Tests for tiny-workflow — DAG execution, retries, persistence, approvals, hook
 """
 
 import asyncio
-import json
 import os
 import tempfile
 import time
-import uuid
-from pathlib import Path
 
 import pytest
 
@@ -621,7 +618,7 @@ class TestEventHooks:
 
         engine = WorkflowEngine(event_hooks=hooks)
         engine.register(FailingStep("fail", retry_count=0, retry_delay=0.01))
-        ctx = engine.run()
+        engine.run()
         assert ("failure", "fail") in events
         assert any("fail" in str(e) for e in events)
 
@@ -703,7 +700,7 @@ class TestLambdaStep:
             lambda ctx: (order.append("second"), "done2")[1],
             depends_on=["first"],
         ))
-        ctx = engine.run()
+        engine.run()
         assert order == ["first", "second"]
 
 
@@ -802,7 +799,7 @@ class TestDeadLetter:
     def test_dead_letter_steps_listed(self):
         engine = WorkflowEngine()
         engine.register(FailingStep("fail1", retry_count=0, retry_delay=0.01))
-        ctx = engine.run()
+        engine.run()
         assert "fail1" in engine._dead_letter_steps
 
     def test_dead_letter_skips_dependents(self):
@@ -820,7 +817,7 @@ class TestDeadLetter:
             "on_workflow_failure": [lambda ctx, failed: events.append(("failed", failed))]
         })
         engine.register(FailingStep("fail", retry_count=0, retry_delay=0.01))
-        ctx = engine.run()
+        engine.run()
         assert len(events) >= 1
         assert "fail" in str(events[0][1])
 

@@ -31,7 +31,7 @@ jobs:
         run: ruff check .
 
       - name: Run tests
-        run: pytest tests/ test_tiny_workflow.py -q
+        run: pytest test_tiny_workflow.py -q
 
       - name: Benchmark
-        run: python benchmarks/bench_workflow.py --no-chart
+        run: python benchmarks/tiny_workflow_bench.py

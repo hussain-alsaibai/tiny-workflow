@@ -11,7 +11,7 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from tiny_workflow import LambdaStep, WorkflowEngine, Workflow
+from tiny_workflow import LambdaStep, WorkflowEngine
 
 
 # ──────────────────────────────────────────────
@@ -122,7 +122,6 @@ def make_priority_step(step_id: str, priority: int):
 def run_priority_benchmark():
     """Verify that higher-priority steps complete first within a level."""
     engine = WorkflowEngine()
-    step_ids_in_order = []
 
     for i in range(20):
         # Register in random priority order
@@ -262,7 +261,7 @@ def main():
     print(f"  Throughput (async):  {r2['steps_per_sec']} steps/sec")
     print(f"  Fire-and-forget:    downstream ran = {r4['downstream_ran']}")
     print(f"  DAG export avg:      {r5['avg_export_ms']} ms")
-    print(f"\n✅ All benchmarks complete.\n")
+    print("\n✅ All benchmarks complete.\n")
 
 
 if __name__ == "__main__":
