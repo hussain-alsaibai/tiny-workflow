@@ -32,3 +32,9 @@ Repository = "https://github.com/hussain-alsaibai/tiny-workflow"
 
 [tool.setuptools.packages.find]
 include = ["tiny_workflow*"]
+
+[tool.ruff]
+# Lint rules are declared explicitly so the CI result does not depend
+# on whichever ruff release pip happens to install that day.
+lint.select = ["E", "F", "W", "I", "B"]
+lint.ignore = ["E501"]

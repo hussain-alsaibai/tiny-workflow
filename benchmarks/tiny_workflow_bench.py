@@ -5,14 +5,13 @@ Run with: python benchmarks/tiny_workflow_bench.py
 """
 
 import asyncio
-import time
-import sys
 import os
+import sys
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from tiny_workflow import LambdaStep, WorkflowEngine
-
 
 # ──────────────────────────────────────────────
 # Benchmark 1: 50 steps — 5 levels × 10 parallel

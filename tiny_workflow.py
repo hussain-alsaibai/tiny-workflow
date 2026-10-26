@@ -5,14 +5,14 @@ state persistence, and human approval gates. Zero dependencies.
 
 from __future__ import annotations
 
-import asyncio
 import ast
+import asyncio
 import enum
 import json
 import time
 import traceback
 import uuid
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Set, Union
 
@@ -225,7 +225,7 @@ def _safe_eval_node(node: ast.AST, ctx: dict) -> Any:
     if isinstance(node, ast.Dict):
         return {
             _safe_eval_node(k, ctx): _safe_eval_node(v, ctx)
-            for k, v in zip(node.keys, node.values)
+            for k, v in zip(node.keys, node.values, strict=True)
         }
 
     # ── Name (e.g., state) ──
@@ -305,7 +305,7 @@ def _safe_eval_node(node: ast.AST, ctx: dict) -> Any:
     # ── Comparison ops ──
     if isinstance(node, ast.Compare):
         left = _safe_eval_node(node.left, ctx)
-        for op, comparator in zip(node.ops, node.comparators):
+        for op, comparator in zip(node.ops, node.comparators, strict=True):
             right = _safe_eval_node(comparator, ctx)
             if isinstance(op, ast.Eq):
                 if left != right:
@@ -497,7 +497,7 @@ class WorkflowEngine:
                 # Run current level steps concurrently
                 step_results = await asyncio.gather(*tasks, return_exceptions=True)
 
-                for step, result in zip(level, step_results):
+                for step, result in zip(level, step_results, strict=True):
                     if isinstance(result, Exception):
                         ctx.results[step.id] = StepResult(
                             step_id=step.id,
