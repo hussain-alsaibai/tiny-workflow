@@ -1,4 +1,5 @@
 # tiny-workflow
+[![CI](https://github.com/hussain-alsaibai/tiny-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/hussain-alsaibai/tiny-workflow/actions/workflows/ci.yml)
 
 ![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
